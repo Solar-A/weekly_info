@@ -1,0 +1,20 @@
+- url = weekly_info.persisted? ? admin_weekly_info_url(weekly_info) : admin_weekly_infos_url
+
+= form_for weekly_info, url: url do |f|
+  = f.hidden_field :start
+  = f.hidden_field :ending
+
+  .border-bottom.mb-3
+    .row
+      .col
+        = f.label 'Ключевое астро событие'
+        = f.text_area :main_astrological_event, class: 'form-control', rows: 2
+
+    .row
+      .col
+        = f.label 'Рекомендации на неделю'
+        = f.text_area :recommendation, class: 'form-control', rows: 4
+
+  => f.submit 'Save', class: 'btn btn-primary btn-sm'
+  button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" aria-label="Close"
+    | Cancel

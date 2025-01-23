@@ -1,0 +1,11 @@
+.modal-header
+  h5.modal-title
+    = l resource_weekly_info.start
+    | -
+    = l resource_weekly_info.ending
+  button type="button" class="close" data-dismiss="modal" aria-label="Close"
+    span aria-hidden="true"
+      | &times;
+
+.modal-body
+  = render partial: 'admin/weekly_infos/shared/form', locals: { weekly_info: resource_weekly_info }

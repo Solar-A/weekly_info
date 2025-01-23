@@ -1,0 +1,23 @@
+.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2
+  h1.h1 Раздел Сегодня.Неделя
+
+table.table.table-sm
+  thead
+    tr
+      - dates.each do |date|
+        th.text-center scope='col'
+          = l date[:start]
+          | -
+          = l date[:end]
+
+  tbody
+    - dates.each do |date|
+      td.align-middle.text-center
+        - item = weekly_infos_collection[date[:start].cweek]
+
+        - if item.nil?
+          = link_to new_admin_weekly_info_path(weekly_info: {start: date[:start], ending: date[:end]}), data: { remote: true, modal: true }
+            i.fas.fa-plus.mr-1 aria-hidden="true"
+        - else
+          = link_to edit_admin_weekly_info_path(item.id), data: { remote: true, modal: true }
+            i.fas.fa-edit.mr-1 aria-hidden="true"
